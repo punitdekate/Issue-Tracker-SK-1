@@ -1,0 +1,17 @@
+<div class="login-container">
+    <h2 class="text-center">Verify OTP</h2>
+    <% if(error){ %>
+        <ul>
+            <li class="error-message">
+                <%=error.msg%>
+            </li>
+        </ul>
+        <% } %>
+            <form action="/forget-password/otp" method="POST">
+
+                <label for="otp">OTP<span class="value-required">*</span><span id="timer"></span></label>
+                <input type="text" id="otp" name="otp" />
+                <button type="submit" class="text-center">Submit</button>
+                <a href="/forget-password/resend-otp" class='forget-password'>Resend OTP</a>
+            </form>
+</div>

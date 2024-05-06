@@ -1,0 +1,44 @@
+<div class="employee-table">
+    <div class="employee-top">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Type</th>
+                    <th>Creation Date</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="employee-data">
+                <% projects.forEach(project =>{%>
+                    <tr>
+                        <td>
+                            <%=project.projectId.name %>
+                        </td>
+                        <td>
+                            <%=project.projectId.description %>
+                        </td>
+                        <td>
+                            <%=project.projectId.type %>
+                        </td>
+                        <td>
+                            <%=new Date(project.projectId.createdOnDate).toLocaleString() %>
+                        </td>
+
+                        <td>
+                            <a href="/issue-tracker/project/<%=project.projectId._id %>/" id="create-issue">
+                                <i class="fa-solid fa-angles-right"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <%}) %>
+            </tbody>
+        </table>
+    </div>
+    <!-- <div class="employee-bottom">
+        <a href="#" id="previous">Previous</a>
+        <a href="#" id="pageNumber" currentPage="1">1</a>
+        <a href="#" id="next">Next</a>
+    </div> -->
+</div>

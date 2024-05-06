@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Issue Tracker</title>
+    <link rel="icon" type="image/x-icon" href="https://cdn.iconscout.com/icon/premium/png-256-thumb/website-bug-tracking-1819337-1544052.png">
+    <script src="https://kit.fontawesome.com/1255aa9144.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+
+<body>
+    <nav class="erp-navbar">
+        <div class="logo">
+            <div>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdjQ7MI73eSexusnwXrVIzsSQlXJGnGyamAun5cGN8Mg&s">
+            </div>
+            <div>
+                <a href="/issue-tracker">Issue Tracker</a>
+            </div>
+
+        </div>
+        <div class="erp-links">
+            <ul>
+                <% if(user){ %>
+                    <li>Hello'
+                        <%= user.role%>
+                    </li>
+
+                    <% if(user.role == "Admin" && !projectId){ %>
+                        <li>
+                            <a href="/issue-tracker/project/create" class="button-css">New Project</a>
+                        </li>
+                        <% } %>
+
+                            <% if(user.role == "Admin" && projectId){ %>
+
+                                <li><a href="/issue-tracker/<%= projectId%>/assignMember">Assign Member</a></li>
+                                <li><a href="/issue-tracker/issue/<%= projectId%>">Create Issue</a></li>
+
+                                <li>
+                                    <form action="/issue-tracker/<%=projectId %>/search" id="search" method="post">
+                                        <input type="search" placeholder="search" name="searchQuery"></input>
+                                        <button type="submit">Search</button>
+                                    </form>
+                                </li>
+
+                                <% }else if(user.role == "User" && projectId){ %>
+                                    <li><a href="/issue-tracker/issue/<%= projectId%>">Create Issue</a></li>
+
+                                    <li>
+                                        <form action="/issue-tracker/<%=projectId %>/search" id="search" method="post">
+                                            <input type="search" placeholder="search" name="searchQuery"></input>
+                                            <button type="submit">Search</button>
+                                        </form>
+                                    </li>
+
+                                    <% } %>
+                                        <li><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></li>
+                                        <% } %>
+
+            </ul>
+
+        </div>
+    </nav>
+    <div id="popup-container">
+        <p id="pop-up-msg"></p>
+    </div>
+    <div class="popup-overlay" id="popup-overlay">
+        <div class="popup">
+            <p id="popup-msg">Are you sure you want to delete?</p>
+            <div class="button-container">
+                <button id="btn-yes">Yes</button>
+                <button id="btn-no">No</button>
+            </div>
+        </div>
+    </div>
+    <main>
+        <%- body %>
+    </main>
+    <script src="/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+
+</html>

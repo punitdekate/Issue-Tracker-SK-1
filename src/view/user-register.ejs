@@ -1,0 +1,23 @@
+<div class="login-container">
+    <h2 class="text-center">Registration</h2>
+    <% if(error){ %>
+        <ul>
+            <li class="error-message">
+                <%= error.msg %>
+            </li>
+        </ul>
+        <% } %>
+            <form action="/register" method="POST">
+                <label for="name">Name<span class="value-required">*</span></label>
+                <input type="text" id="name" name="name" />
+
+                <label for="email">Email<span class="value-required">*</span></label>
+                <input type="email" id="email" name="email" />
+
+                <label for="password">Password<span class="value-required">*</span></label>
+                <input type="password" id="password" name="password" />
+
+                <button type="submit" class="text-center">Submit</button>
+            </form>
+            <p>Already have an account? <a href="/login">Login</a></p>
+</div>

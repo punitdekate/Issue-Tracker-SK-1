@@ -1,0 +1,79 @@
+<div class="registration">
+    <div class="registration-heading">
+        <h3>Create Issue<span class="x-pos"><a href="/issue-tracker/<%= projectId %>">X</a></span></h3>
+    </div>
+    <div class="registration-form">
+        <% if(error){ %>
+            <ul>
+                <li class="error-message">
+                    <%= error.msg %>
+                </li>
+            </ul>
+            <% } %>
+                <form action="/issue-tracker/issue/view/<%= projectId %>/<%= issue._id %>" method="POST" enctype="multipart/form-data">
+                    <div class="registration-left">
+                        <label for="projectId">Project</label>
+                        <select name="projectId" id="projectName">
+                          <option value="<%=project._id %>"><%= project.name %></option>
+                  </select>
+
+                        <label for="issueType">Type</label>
+                        <select name="issueType" id="issueType">
+                      <% types.forEach(type=>{%>
+                        <% if(issue.type == type.type) {%>
+                        <option value=<%=type.type %>selected><%= type.type %></option>
+                          <% }else{ %>
+                        <option value=<%=type.type %>><%= type.type %></option>
+                        <% } %>
+                      <%})%>
+                  </select>
+                        <label for="summary">Summary</label>
+                        <input type="text" id="summary" name="summary" value="<%=issue.summary%>" required />
+                        <label for="issueStatus">Status</label>
+                        <select name="status" id="status">
+                          <% statuses.forEach(status=>{%>
+                            <% if(issue.status == status.status) {%>
+                              <option value="<%=status.status %>"selected><%= status.status %></option>
+                                <% }else{ %>
+                <option value="<%=status.status %>"><%=status.status %></option>
+                        <% } %>
+
+                          <%}) %>
+                          
+          </select>
+
+                        <label for="environment">Environment</label>
+                        <input type="text" name="environment" id="environment" value="<%= issue.environment %>">
+                    </div>
+                    <hr>
+                    <div class="registration-right">
+                        <label for="prority">Priority</label>
+                        <select name="priority" id="priority">
+                      <% priorities.forEach(priority=>{%>
+                        <% if(issue.priority == priority.priority) {%>
+                          <option value="<%=priority.priority %>"selected><%= priority.priority %></option>
+                            <% }else{ %>
+                        <option value="<%=priority.priority %>"><%= priority.priority %></option>
+                        <% } %>
+                      <%})%>
+                </select>
+                        <label for="description">Description</label>
+                        <textarea id="description" name="description" value="<%=issue.description%>"><%=issue.description%></textarea>
+
+                        <label for="assignTo">Assigned To</label>
+                        <select name="assignTo" id="assignTo">
+            <% users.forEach(user=>{%>
+              <% if(issue.assignedTo == user.userId._id) {%>
+                <option value="<%=user.userId._id %>"selected><%= user.userId.name %></option>
+              <% }else{ %>
+              <option value="<%=user.userId._id %>"><%= user.userId.name %></option>
+              <% } %>
+            <%})%>
+        </select>
+                        <label for="attachments">Attachments</label>
+                        <input type="file" id="attachments" name="attachments" multiple />
+                        <button type="submit">Submit</button>
+                </form>
+                </div>
+
+    </div>

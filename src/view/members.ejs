@@ -1,0 +1,39 @@
+<div class="employee-table">
+    <div class="employee-top">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th></th>
+                    <th></th>
+                    <th><a href="/issue-tracker/project/<%=projectId %>/"><i class="fa-solid fa-backward"></i></a></th>
+                </tr>
+            </thead>
+            <tbody id="employee-data">
+                <% members.forEach(member =>{%>
+                    <tr>
+                        <td>
+                            <%=member.name %>
+                        </td>
+                        <td>
+                            <%=member.email %>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <button onclick="assignMember('<%=projectId %>','<%=member._id %>')">
+                                <i class="fa-solid fa-plus"></i></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <%}) %>
+            </tbody>
+        </table>
+    </div>
+    <!-- <div class="employee-bottom">
+        <a href="#" id="previous">Previous</a>
+        <a href="#" id="pageNumber" currentPage="1">1</a>
+        <a href="#" id="next">Next</a>
+    </div> -->
+</div>

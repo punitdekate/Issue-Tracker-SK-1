@@ -1,0 +1,38 @@
+<div class="registration">
+    <div class="registration-heading">
+        <h3>Create Project<span class="x-pos"><a href="/issue-tracker/"><i class="fa-solid fa-x"></i></a></span></h3>
+    </div>
+    <div class="registration-form">
+        <% if(error){ %>
+            <ul>
+                <li class="error-message">
+                    <%= error.msg %>
+                </li>
+            </ul>
+            <% } %>
+                <form action="/issue-tracker/project/create" method="POST">
+                    <div class="registration-left">
+                        <label for="name">Project Name<span class="value-required">*</span></label>
+                        <input type="text" id="name" name="name" required />
+
+                        <label for="description">Description<span class="value-required">*</span></label>
+                        <textarea id="description" name="description" required></textarea>
+
+                    </div>
+                    <hr>
+                    <div class="registration-right">
+                        <label for="type">Project Type<span class="value-required">*</span></label>
+                        <select name="type" id="type" placeholder="Select-Project-type">
+                  <option value="Web Development">Web Development</option>
+                  <option value="Android Development">Android Development</option>
+                </select>
+
+                        <label for="duration">Duration</label>
+                        <input type="date" id="duration" name="duration" />
+
+                        <button type="submit">Submit</button>
+                    </div>
+                </form>
+    </div>
+
+</div>
