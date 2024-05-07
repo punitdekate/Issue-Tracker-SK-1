@@ -11,6 +11,7 @@ export default class UserRepository {
             return createdUser;
         } catch (error) {
             console.log(error);
+            throw new Error(error);
         }
     }
 
@@ -19,6 +20,7 @@ export default class UserRepository {
             return await UserModel.findOne(factor);
         } catch (error) {
             console.log(error);
+            throw new Error(error);
         }
     }
 
@@ -27,6 +29,7 @@ export default class UserRepository {
             return await UserModel.findOne(factor).select('-password');
         } catch (error) {
             console.log(error);
+            throw new Error(error);
         }
     }
 
@@ -35,6 +38,7 @@ export default class UserRepository {
             return await UserModel.find(factor);
         } catch (error) {
             console.log(error);
+            throw new Error(error);
         }
     }
     async verifyResetOtp(otp) {
@@ -54,6 +58,7 @@ export default class UserRepository {
             return await UserProjectRelationModel.find({ projectId: projectId }).populate('userId').populate('projectId');
         } catch (error) {
             console.log(error);
+            throw new Error(error);
         }
     }
 
@@ -62,6 +67,7 @@ export default class UserRepository {
             return await UserProjectIssueRelation.find({ projectId: projectId }).populate("userId").populate('projectId').populate('issueId');
         } catch (error) {
             console.log(error);
+            throw new Error(error);
         }
     }
 

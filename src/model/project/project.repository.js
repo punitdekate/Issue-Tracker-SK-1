@@ -7,6 +7,7 @@ export default class ProjectRepository {
             return await ProjectModel.findOne(factor);
         } catch (error) {
             console.log(error);
+            throw new Error(error);
         }
     }
 
@@ -57,6 +58,7 @@ export default class ProjectRepository {
             return { success: true, projects: userAssignedProjects, totalCount: totalCount };
         } catch (error) {
             throw new Error(error);
+            throw new Error(error);
         }
     }
 
@@ -64,6 +66,7 @@ export default class ProjectRepository {
         try {
             return await UserProjectRelationModel.findOne({ userId: userId, projectId: projectId });
         } catch (error) {
+            throw new Error(error);
             throw new Error(error);
         }
     }
@@ -73,6 +76,7 @@ export default class ProjectRepository {
             return await UserProjectRelationModel.find({ userId: userId }).populate('projectId')
         } catch (error) {
             console.log(error);
+            throw new Error(error);
         }
     }
 

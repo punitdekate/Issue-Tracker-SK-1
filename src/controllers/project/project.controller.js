@@ -59,8 +59,7 @@ export default class ProjectController {
         try {
             const projectId = req.params.projectId;
             const userId = req.params.userId;
-            const isAlreadyAssigned = await this.projectRepository.findUserProject(userId, projectId)
-            console.log(isAlreadyAssigned);
+            const isAlreadyAssigned = await this.projectRepository.findUserProject(userId, projectId);
             if (isAlreadyAssigned) {
                 return res.status(200).json({ success: true, msg: "User already assigned in project", userId: userId, projectId: projectId });
             }
@@ -69,7 +68,6 @@ export default class ProjectController {
                 projectId: projectId,
             });
             await assignProject.save();
-            console.log(assignProject);
             return res.status(400).json({ success: false, msg: "User assigned in project successfully", userId: userId, projectId: projectId });
         } catch (error) {
             console.log(error);
@@ -104,14 +102,10 @@ export default class ProjectController {
         }
     }
 
-    async getProjectsUserEnrolled(userId) {
-
-    }
 
     async filterBySearch(req, res, next) {
         try {
             const { searchQuery } = req.body;
-            console.log(searchQuery);
             const projectId = req.params.projectId;
             const issues = await this.issueRepository.search(searchQuery, projectId);
             const users = await this.userRepository.findAllUser({});
@@ -140,7 +134,7 @@ export default class ProjectController {
             const priorities = await this.issueRepository.getIssuePriorities();
             const project = await this.projectRepository.getProject({ _id: projectId })
 
-            return res.render('main-page', { user: req.cookies.user, issues: issues, project: project, users: users, types: types, statuses: statuses, priorities: priorities, projectId: projectId });
+            res.render('main-page', { user: req.cookies.user, issues: issues, project: project, users: users, types: types, statuses: statuses, priorities: priorities, projectId: projectId });
         } catch (error) {
             console.log(error);
             return res.render('error-404', { user: null, projectId: null });

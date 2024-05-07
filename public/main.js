@@ -1,11 +1,10 @@
 async function assignMember(projectId, userId) {
     try {
-        console.log(projectId, userId);
         const response = await fetch(`http://localhost:3000/issue-tracker/${projectId}/assignMember/${userId}`, {
-            method: "POST"
+            method: "POST",
+            credentials: "include"
         })
         const data = await response.json();
-        console.log(data);
         displayPopup(data.msg);
 
     } catch (error) {

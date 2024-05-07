@@ -95,3 +95,22 @@ export const otpValidator = async(req, res, next) => {
     }
     next();
 }
+
+
+export const projectValidator = async(req, res, next) => {
+    const rules = [
+        body('name').notEmpty().withMessage("Email is required"),
+        body('description').notEmpty().withMessage('Description is required'),
+        body('type').notEmpty().withMessage('ProjectType is required')
+    ]
+
+    await Promise.all(rules.map(rule => rule.run(req)));
+
+    const validationErrors = validationResult(req);
+
+    if (!validationErrors.isEmpty()) {
+        const errors = validationErrors.array();
+        return res.render('create-project', { "error": errors[0], user: req.cookies.user, projectId: null });
+    }
+    next();
+}

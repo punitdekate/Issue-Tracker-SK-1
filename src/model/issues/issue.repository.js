@@ -26,6 +26,7 @@ export default class IssueRepository {
             return createdIssue;
         } catch (error) {
             console.log(error);
+            throw new Error(error);
         }
     }
 
@@ -51,6 +52,7 @@ export default class IssueRepository {
                 .populate('assignBy').populate('assignTo').populate('projectId');
         } catch (error) {
             console.log(error);
+            throw new Error(error);
         }
     }
 
@@ -59,6 +61,7 @@ export default class IssueRepository {
             return await IssueModel.find(factor).populate('assignBy').populate('assignTo').populate('projectId');
         } catch (error) {
             console.log(error);
+            throw new Error(error);
         }
     }
 
@@ -67,6 +70,7 @@ export default class IssueRepository {
             return await issueTypeModel.find()
         } catch (error) {
             console.log(error);
+            throw new Error(error);
         }
     }
 
@@ -75,6 +79,7 @@ export default class IssueRepository {
             return await issueStatusModel.find()
         } catch (error) {
             console.log(error);
+            throw new Error(error);
         }
     }
 
@@ -83,6 +88,7 @@ export default class IssueRepository {
             return await issuePriorityModel.find()
         } catch (error) {
             console.log(error);
+            throw new Error(error);
         }
     }
 
@@ -97,6 +103,7 @@ export default class IssueRepository {
             })
         } catch (error) {
             console.log(error);
+            throw new Error(error);
         }
     }
 
@@ -119,6 +126,7 @@ export default class IssueRepository {
             return await IssueModel.find(filter).populate('assignBy').populate('assignTo').populate('projectId');
         } catch (error) {
             console.log(error);
+            throw new Error(error);
         }
     }
 
@@ -131,6 +139,7 @@ export default class IssueRepository {
             return await updatedIssue.save();
         } catch (error) {
             console.log(error);
+            throw new Error(error);
         }
     }
 
@@ -145,7 +154,7 @@ export default class IssueRepository {
             }).populate('assignBy').populate('assignTo').populate('projectId');
             return issues;
         } catch (error) {
-            throw new Error(error.message);
+            throw new Error(error);
         }
     }
 
