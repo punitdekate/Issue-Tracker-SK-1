@@ -1,6 +1,6 @@
 async function assignMember(projectId, userId) {
     try {
-        const response = await fetch(`http://localhost:3000/issue-tracker/${projectId}/assignMember/${userId}`, {
+        const response = await fetch(`https://issue-tracker-sk-1.onrender.com/issue-tracker/${projectId}/assignMember/${userId}`, {
             method: "POST",
             credentials: "include"
         })
